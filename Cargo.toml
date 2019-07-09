@@ -1,0 +1,10 @@
+[package]
+repository = "https://github.com/cyclowns/rainsuck"
+readme = "README.md"
+license = "AGPLv3"
+name = "rainsuck"
+version = "0.1.0"
+authors = ["cyclowns <cyclowns@protonmail.ch>"]
+edition = "2018"
+
+[dependencies]
