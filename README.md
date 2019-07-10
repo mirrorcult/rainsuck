@@ -1,7 +1,5 @@
 ![rainsuck logo](https://i.imgur.com/NMXFise.png)
 
-[![MadeWithRust]()]
-
 [![Build Status](https://travis-ci.org/cyclowns/rainsuck.svg?branch=master)](https://travis-ci.org/cyclowns/rainsuck) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 # rainsuck
