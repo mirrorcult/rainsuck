@@ -1,5 +1,9 @@
 ![rainsuck logo](https://i.imgur.com/NMXFise.png)
 
+[![Build Status](https://travis-ci.org/cyclowns/rainsuck.svg?branch=master)](https://travis-ci.org/cyclowns/rainsuck)
+
+# rainsuck
+
 rainsuck (or rAINsUCK, since, y'know, rs) is a brainfuck interpreter written in Rust. This was
 just a little side-project to get myself back into coding in Rust, so don't expect it to be amazingly
 well-maintained.
@@ -25,7 +29,7 @@ ARGS:
 
 Using rainsuck with a file:
 ```bash
-$ rainsuck -f testing/dummy.bf
+$ rainsuck -f testing/helloworld.bf
 Program ended with: Hello World!
 Time elapsed was: 249.863s
 ```
