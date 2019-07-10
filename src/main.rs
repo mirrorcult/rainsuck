@@ -11,6 +11,7 @@ use std::io::stdin;
 use std::io::Read;
 use std::path::Path;
 use std::fs::File;
+use std::time::Instant;
 
 #[allow(dead_code)]
 /// Parses a snippet of BF code and evaluates it
@@ -87,6 +88,8 @@ fn strip_chars(code: &str) -> String {
 }
 
 fn main() {
+    let start = Instant::now(); // timestamp
+
     let matches = clap_app!(rainsuck =>
         (version: "0.1.1")
         (author: "cyclowns <cyclowns@protonmail.ch>")
@@ -112,5 +115,6 @@ fn main() {
         result = evaluate_brainfuck(contents);
     }
     println!("Program ended with: {}", result);
+    println!("Time elapsed was: {:?}", start.elapsed());
 }
 
