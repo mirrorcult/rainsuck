@@ -1,5 +1,5 @@
 // TODO: Test and make sure BF commands work
-
+#[macro_use]
 extern crate clap;
 
 #[cfg(test)]
