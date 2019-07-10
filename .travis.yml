@@ -7,4 +7,4 @@ matrix:
   allow_failures:
     - rust: nightly
 script:
-  - ../../testing/run_tests.sh
+  - cyclowns/rainsuck/testing/run_tests.sh
