@@ -58,7 +58,6 @@ fn evaluate_brainfuck(code: String) -> String {
 /// pairing, to make evaluating them easier.
 fn setup_bracket_mapping(code: &str) -> Vec<usize> {
     let length = code.len();
-    println!("{}", length);
     let mut bracket_vec: Vec<usize> = Vec::with_capacity(length);
     let mut temp_vec: Vec<usize> = Vec::with_capacity(length);
     bracket_vec.resize(length, 0); // initialize with zeroes so no out of bound
@@ -73,7 +72,6 @@ fn setup_bracket_mapping(code: &str) -> Vec<usize> {
         }
         ptr += 1;
     }
-    println!("{:?}", bracket_vec);
     bracket_vec
 }
 
@@ -89,7 +87,6 @@ fn strip_chars(code: &str) -> String {
 }
 
 fn main() {
-    //
     let matches = clap_app!(rainsuck =>
         (version: "0.1.1")
         (author: "cyclowns <cyclowns@protonmail.ch>")
@@ -98,6 +95,7 @@ fn main() {
         (@arg INPUT: +required "Brainfuck code to be interpreted, either a file or string as set by -f")
     ).get_matches();
 
+    let mut result = String::new();
     if matches.is_present("FILE") {
         // get filepath from input + check if it is real and is a file
         let fpath = matches.value_of("INPUT").unwrap();
@@ -107,11 +105,12 @@ fn main() {
             let mut file = File::open(rpath).unwrap();
             let mut contents = String::new();
             file.read_to_string(&mut contents).unwrap();
-            evaluate_brainfuck(contents);
+            result = evaluate_brainfuck(contents);
         }
     } else { // not file
         let contents = matches.value_of("INPUT").unwrap().to_string();
-        evaluate_brainfuck(contents);
+        result = evaluate_brainfuck(contents);
     }
+    println!("Program ended with: {}", result);
 }
 
