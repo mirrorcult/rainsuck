@@ -1,7 +1,3 @@
-// TODO: Get command-line stuff working
-// -f (--file) arg for file input, -s (--string) arg for string input
-// -t (--textify) arg to take in text and produce BF code? maybe later?
-
 // TODO: Figure out a way to represent each brainfuck command
 // < > . , + - [ ]
 
