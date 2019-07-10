@@ -28,14 +28,17 @@ fn evaluate_brainfuck(code: String) -> String {
     let code_stripped = strip_chars(&code); // strips a-zA-Z, etc everything not used in brainfuck
     let bracket_map = setup_bracket_mapping(&code_stripped);
     let mut code_pointer = 0;
-    while code_pointer < code.len() {
-        let c = code.chars().nth(code_pointer).unwrap(); // wow, thats tedious
+    while code_pointer < code_stripped.len() {
+        let c = code_stripped.chars().nth(code_pointer).unwrap(); // wow, thats tedious
         match c {
             '+' => memory[pointer] += 1,
             '-' => memory[pointer] -= 1,
             '>' => pointer += 1,
             '<' => pointer -= 1,
-            '.' => result.push(memory[pointer] as char),
+            '.' => {
+                print!("{}", memory[pointer] as char);
+                result.push(memory[pointer] as char);
+            },
             ',' => {
                 let mut input = String::new();
                 print!("Input needed: ");
@@ -98,7 +101,6 @@ fn main() {
         (@arg INPUT: +required "Brainfuck code to be interpreted, either a file or string as set by -f")
     ).get_matches();
 
-    let mut result = String::new();
     if matches.is_present("FILE") {
         // get filepath from input + check if it is real and is a file
         let fpath = matches.value_of("INPUT").unwrap();
@@ -108,13 +110,12 @@ fn main() {
             let mut file = File::open(rpath).unwrap();
             let mut contents = String::new();
             file.read_to_string(&mut contents).unwrap();
-            result = evaluate_brainfuck(contents);
+            evaluate_brainfuck(contents);
         }
     } else { // not file
         let contents = matches.value_of("INPUT").unwrap().to_string();
-        result = evaluate_brainfuck(contents);
+        evaluate_brainfuck(contents);
     }
-    println!("Program ended with: {}", result);
     println!("Time elapsed was: {:?}", start.elapsed());
 }
 
