@@ -6,4 +6,5 @@ rust:
 matrix:
   allow_failures:
     - rust: nightly
-after_success: testing/run_tests.sh
+script:
+  - ../../testing/run_tests.sh
