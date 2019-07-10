@@ -1,0 +1,4 @@
+name: rainsuck
+version: "0.1.0"
+author: cyclowns <cyclowns@protonmail.ch>
+about: Brainfuck interpreter written in Rust
