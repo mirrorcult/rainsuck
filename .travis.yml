@@ -6,7 +6,4 @@ rust:
 matrix:
   allow_failures:
     - rust: nightly
-jobs:
-  include:
-    - stage: exec-testing
-    - script: testing/run_tests.sh
+after_success: testing/run_tests.sh
