@@ -26,10 +26,12 @@ use std::fs::File;
 /// // p = "Hello World!"
 /// ```
 fn evaluate_brainfuck(mut code: String) {
+    println!("got here, {}", code);
     let memory: [i32; 30000] = [0; 30000]; // zero-initialize every cell
     let pointer: i32 = 0; // pointer starts at 0
 
     code = strip_chars(code); // strips a-zA-Z, etc everything not used in brainfuck
+    println!("got to strip, {}", code);
     for c in code.chars() {
 
     }
@@ -73,8 +75,9 @@ fn main() {
             file.read_to_string(&mut contents).unwrap();
             evaluate_brainfuck(contents);
         }
-    } else {
-        println!("no file :(");
+    } else { // not file
+        let mut contents = matches.value_of("INPUT").unwrap().to_string();
+        evaluate_brainfuck(contents);
     }
 }
 
