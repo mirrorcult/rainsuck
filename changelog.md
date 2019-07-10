@@ -1,7 +1,6 @@
 <a name=""></a>
 ##  (2019-07-10)
 
-
 #### Features
 
 *   time elapsed now shown when running ([bb815446](https://github.com/cyclowns/rainsuck/commit/bb815446b405d4ce8101cd8906abac9edff763b1))
