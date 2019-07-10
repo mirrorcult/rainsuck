@@ -4,7 +4,7 @@ rainsuck (or rAINsUCK, since, y'know, rs) is a brainfuck interpreter written in 
 just a little side-project to get myself back into coding in Rust, so don't expect it to be amazingly
 well-maintained.
 
-## Using Rainsuck
+## Using rainsuck
 
 Run `rainsuck -h` or `rainsuck --help` after installing for help.
 
@@ -21,7 +21,23 @@ ARGS:
     <INPUT>    Brainfuck code to be interpreted, either a file or string as set by -f
 ```
 
-## Install Rainsuck
+## Example rainsuck usage
+
+Using rainsuck with a file:
+```bash
+$ rainsuck -f testing/dummy.bf
+Program ended with: Hello World!
+Time elapsed was: 249.863s
+```
+
+Using rainsuck with a string:
+```bash
+$ rainsuck "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+."
+Program ended with: Hello World!
+Time elapsed was: 249.863µs
+```
+
+## Install rainsuck
 
 Building and installing rainsuck is simple.
 
