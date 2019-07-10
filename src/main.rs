@@ -1,10 +1,4 @@
-// TODO: Have parse_input remove
-
-// TODO: Figure out a way to represent each brainfuck command
-// < > . , + - [ ]
-
-// TODO: Figure out how to represent the 'tape'
-// 30k length was used for the array in original BF, so lets do that
+// TODO: Test and make sure BF commands work
 
 #[macro_use]
 extern crate clap;
@@ -25,26 +19,66 @@ use std::fs::File;
 /// println!({}, p)
 /// // p = "Hello World!"
 /// ```
-fn evaluate_brainfuck(mut code: String) {
-    println!("got here, {}", code);
-    let memory: [i32; 30000] = [0; 30000]; // zero-initialize every cell
-    let pointer: i32 = 0; // pointer starts at 0
+fn evaluate_brainfuck(code: String) -> String {
+    let mut memory: [u8; 30000] = [0; 30000]; // zero-initialize every cell
+    let mut pointer: usize = 0; // pointer starts at 0
+    let mut result = String::new();
 
-    code = strip_chars(code); // strips a-zA-Z, etc everything not used in brainfuck
-    println!("got to strip, {}", code);
-    for c in code.chars() {
-
+    let code_stripped = strip_chars(&code); // strips a-zA-Z, etc everything not used in brainfuck
+    let bracket_map = setup_bracket_mapping(&code_stripped);
+    let mut code_pointer = 0;
+    while code_pointer < code.len() {
+        let c = code.chars().nth(code_pointer).unwrap(); // wow, thats tedious
+        match c {
+            '+' => memory[pointer] += 1,
+            '-' => memory[pointer] -= 1,
+            '>' => pointer += 1,
+            '<' => pointer -= 1,
+            '.' => result.push(memory[pointer] as char),
+            ',' => {
+                let mut input = String::new();
+                print!("Input needed: ");
+                stdin().read_line(&mut input).expect("Input not correctly entered");
+                memory[pointer] = input.parse::<u8>().unwrap();
+            },
+            '[' => {
+                if memory[pointer] == 0 { code_pointer = bracket_map[code_pointer]; }
+            },
+            ']' => {
+                if memory[pointer] != 0 { code_pointer = bracket_map[code_pointer]; }
+            },
+            _ => panic!("How the hell did this get here?!")
+        }
+        code_pointer += 1;
     }
+    result
 }
 
 /// Sets up a vector containing a list of each [] bracket's
 /// pairing, to make evaluating them easier.
-fn setup_bracket_mapping(code: String) {
+fn setup_bracket_mapping(code: &str) -> Vec<usize> {
+    let length = code.len();
+    println!("{}", length);
+    let mut bracket_vec: Vec<usize> = Vec::with_capacity(length);
+    let mut temp_vec: Vec<usize> = Vec::with_capacity(length);
+    bracket_vec.resize(length, 0); // initialize with zeroes so no out of bound
 
+    let mut ptr: usize = 0;
+    for c in code.chars() {
+        if c == '[' { temp_vec.push(ptr) }
+        if c == ']' {
+            let start_pos = temp_vec.pop().unwrap();
+            bracket_vec[start_pos] = ptr;
+            bracket_vec[ptr] = start_pos;
+        }
+        ptr += 1;
+    }
+    println!("{:?}", bracket_vec);
+    bracket_vec
 }
 
 /// Strips all non-BF characters (all besides + - < > [ ] . ,)
-fn strip_chars(code: String) -> String {
+fn strip_chars(code: &str) -> String {
     let mut result = String::new();
     for c in code.chars() {
         if "+-<>[].,".contains(c) {
@@ -76,7 +110,7 @@ fn main() {
             evaluate_brainfuck(contents);
         }
     } else { // not file
-        let mut contents = matches.value_of("INPUT").unwrap().to_string();
+        let contents = matches.value_of("INPUT").unwrap().to_string();
         evaluate_brainfuck(contents);
     }
 }
