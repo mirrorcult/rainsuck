@@ -9,4 +9,4 @@ matrix:
 jobs:
   include:
     - stage: exec-testing
-    - script: testing/run_teshs.sh
+    - script: testing/run_tests.sh
