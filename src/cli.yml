@@ -3,20 +3,20 @@ version: "0.1.1"
 author: cyclowns <cyclowns@protonmail.ch>
 about: Brainfuck interpreter written in Rust
 args:
-  - file:
-    short: f
-    long: file
-    value_name: FILE
-    help: Tells rainsuck that the input is a file
-    takes_value: false
-  - string:
-    short: s
-    long: string
-    value_name: STRING
-    help: Tells rainsuck that the input is a string
-    takes_value: false
-  - INPUT:
-    help: Sets input to use, either a string or file
-    required: true
-    index: 1
+	- file:
+		short: f
+		long: file
+		value_name: FILE
+		help: Tells rainsuck that the input is a file
+		takes_value: false
+	- string:
+		short: s
+		long: string
+		value_name: STRING
+		help: Tells rainsuck that the input is a string
+		takes_value: false
+	- INPUT:
+		help: Sets input to use, either a string or file
+		required: true
+		index: 1
   
