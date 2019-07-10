@@ -91,7 +91,7 @@ fn main() {
     let start = Instant::now(); // timestamp
 
     let matches = clap_app!(rainsuck =>
-        (version: "0.1.1")
+        (version: "1.0.1")
         (author: "cyclowns <cyclowns@protonmail.ch>")
         (about: "Brainfuck interpreter for rust")
         (@arg FILE: -f --file "Tells rainsuck that your input is a file. Otherwise, assumed that it is a string")
