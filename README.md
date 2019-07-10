@@ -1,4 +1,4 @@
-# rainsuck
+![rainsuck logo](https://i.imgur.com/NMXFise.png)
 
 rainsuck (or rAINsUCK, since, y'know, rs) is a brainfuck interpreter written in Rust. This was
 just a little side-project to get myself back into coding in Rust, so don't expect it to be amazingly
