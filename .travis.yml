@@ -7,4 +7,6 @@ matrix:
   allow_failures:
     - rust: nightly
 script:
+  - cargo test
+  - cargo test --release
   - testing/run_tests.sh
