@@ -1,19 +1,16 @@
 // TODO: Test and make sure BF commands work
 
-#[macro_use]
 extern crate clap;
 
 #[cfg(test)]
 mod tests;
 
-#[allow(unused_imports)]
 use std::io::stdin;
 use std::io::Read;
 use std::path::Path;
 use std::fs::File;
 use std::time::Instant;
 
-#[allow(dead_code)]
 /// Parses a snippet of BF code and evaluates it
 /// ```rust
 /// let p = evaluate_brainfuck(String::new("++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+."))
