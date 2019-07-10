@@ -9,5 +9,4 @@ matrix:
 script:
   - cargo test
   - cargo test --release
-  - cargo build --release
   - testing/run_tests.sh
